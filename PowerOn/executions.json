@@ -1,0 +1,20 @@
+{
+  "WAN": [
+    {
+      "Domain": "example.com",
+      "Port": 13234,
+      "MacAddress": "XX:XX:XX:XX:XX:XX"
+    },
+    {
+      "Domain": "example.com",
+      "Port": 13234,
+      "MacAddress": "XX:XX:XX:XX:XX:XX"
+    }
+  ],
+  "LAN": [
+    {
+      "IpAddress": "192.168.178.02",
+      "MacAddress": "XX:XX:XX:XX:XX:XX"
+    }
+  ]
+}

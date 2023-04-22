@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WakeOnLan": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
