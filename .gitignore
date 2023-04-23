@@ -3,8 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-executions.json
-appsettings.json
+PowerOn/executions.json
+PowerOn/appsettings.json
 
 # User-specific files
 *.rsuser
