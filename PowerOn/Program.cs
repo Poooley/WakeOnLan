@@ -32,18 +32,24 @@ if (!ValidateConnectionSettings(connectionSettings))
     return;
 }
 
-Console.WriteLine("WAN connections:");
-foreach (var wanConnection in connectionSettings.WAN)
+if (connectionSettings.WAN is not null)
 {
-    Console.WriteLine($"- Domain: {wanConnection.Domain}, Port: {wanConnection.Port}");
-    await wakeHelper.Wake(wanConnection, appSettings);
+    Console.WriteLine("WAN connections:");
+    foreach (var wanConnection in connectionSettings.WAN)
+    {
+        Console.WriteLine($"- Domain: {wanConnection.Domain}, Port: {wanConnection.Port}");
+        await wakeHelper.Wake(wanConnection, appSettings);
+    }
 }
 
-Console.WriteLine("LAN connections:");
-foreach (var lanConnection in connectionSettings.LAN)
+if (connectionSettings.LAN is not null)
 {
-    Console.WriteLine($"- IP Address: {lanConnection.IpAddress}, MAC Address: {lanConnection.MacAddress}");
-    await wakeHelper.Wake(lanConnection, appSettings);
+    Console.WriteLine("LAN connections:");
+    foreach (var lanConnection in connectionSettings.LAN ?? Enumerable.Empty<LANConnectionSettings >())
+    {
+        Console.WriteLine($"- IP Address: {lanConnection.IpAddress}, MAC Address: {lanConnection.MacAddress}");
+        await wakeHelper.Wake(lanConnection, appSettings);
+    }
 }
 
 Console.WriteLine("All systems are awake!");
@@ -54,7 +60,7 @@ static bool ValidateConnectionSettings(ConnectionSettings connectionSettings)
 {
     var valid = true;
 
-    foreach (var wanConnection in connectionSettings.WAN)
+    foreach (var wanConnection in connectionSettings.WAN ?? Enumerable.Empty<WANConnectionSettings>())
     {
         if (!ModelValidator.TryValidate(wanConnection, out var wanValidationResults))
         {
@@ -67,7 +73,7 @@ static bool ValidateConnectionSettings(ConnectionSettings connectionSettings)
         }
     }
     
-    foreach (var lanConnection in connectionSettings.LAN)
+    foreach (var lanConnection in connectionSettings.LAN ?? Enumerable.Empty<LANConnectionSettings>())
     {
         if (!ModelValidator.TryValidate(lanConnection, out var lanValidationResults))
         {
