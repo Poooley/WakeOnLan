@@ -17,7 +17,7 @@ dotnet restore
 ```shell
 dotnet build -c Release
 ```
-4. Create/Adjust the appsettings.json and executions.json files and modify the settings according to your preferences. These files should be placed in the same directory as the built executable. 
+4. Create/Adjust the appsettings.json and executions.json files and modify the settings according to your preferences.
 
 5. Navigate to the PowerOn directory and run the application using the following command:
 ```shell
